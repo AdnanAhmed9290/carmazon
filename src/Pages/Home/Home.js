@@ -1,25 +1,23 @@
 import React, { useState } from 'react';
+import { Formik, Form } from 'formik';
+import * as Yup from 'yup';
 import {
   Carousel,
-  CarouselIndicators,
   CarouselControl,
   CarouselItem,
   CarouselCaption,
   Container,
   Row,
   Col,
-  Form,
-  FormGroup,
-  Input,
-  Button,
-  Label
+  Button
 } from 'reactstrap';
+
 import MercedesImg from './../../Assets/images/car1.jpg';
 import car1 from './../../Assets/images/1.jpg';
 import car2 from './../../Assets/images/2.jpg';
 import car3 from './../../Assets/images/3.jpg';
 import car4 from './../../Assets/images/4.jpg';
-import { CarDetails } from '../../Components';
+import { CarDetails, SelectField } from '../../Components';
 
 const items = [
   {
@@ -50,6 +48,12 @@ const dummyCarData = {
   imgUrl: MercedesImg
 };
 
+const CarFinderValidationSchema = Yup.object().shape({
+  year: Yup.string().required('Required'),
+  make: Yup.string().required('Required'),
+  model: Yup.string().required('Required')
+});
+
 const Home = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [animating, setAnimating] = useState(false);
@@ -78,6 +82,10 @@ const Home = () => {
     setActiveIndex(nextIndex);
   };
 
+  const handleCarSearch = fValues => {
+    console.log('Car Finder Form Values: ', fValues);
+  };
+
   return (
     <div className="home-page">
       <div className="intro-slider">
@@ -91,47 +99,46 @@ const Home = () => {
         <Container className="search-container">
           <h1>Find Cars</h1>
           <p className="lead">With thousands of cars, we have just the right one for you</p>
-
-          <Form className="search-form">
-            <Row form className="text-left">
-              <Col md={3} sm={4} xs={12}>
-                <FormGroup className="mb-2 mb-sm-0">
-                  <Label for="province">Year</Label>
-                  <Input type="select" name="year" id="year">
-                    <option>2015</option>
-                    <option>2016</option>
-                    <option>2017</option>
-                    <option>2018</option>
-                  </Input>
-                </FormGroup>
-              </Col>
-              <Col md={3} sm={4} xs={12}>
-                <FormGroup className="mb-2 mb-sm-0">
-                  <Label for="province">Make</Label>
-                  <Input type="select" name="make" id="make">
-                    <option>Honda</option>
-                    <option>Toyota</option>
-                    <option>Suzuki</option>
-                    <option>Chevrolet</option>
-                  </Input>
-                </FormGroup>
-              </Col>
-              <Col md={3} sm={4} xs={12}>
-                <FormGroup className="mb-2 mb-sm-0">
-                  <Label for="province">Model</Label>
-                  <Input type="select" name="model" id="model">
-                    <option>2010</option>
-                    <option>2015</option>
-                    <option>2016</option>
-                    <option>2019</option>
-                  </Input>
-                </FormGroup>
-              </Col>
-              <Col md={3} sm={12} xs={12} className="mt-4 mt-md-0">
-                <Button block>Find Cars</Button>
-              </Col>
-            </Row>
-          </Form>
+          <Formik
+            validationSchema={CarFinderValidationSchema}
+            onSubmit={handleCarSearch}
+            initialValues={{}}>
+            <Form>
+              <div className="search-form">
+                <Row form className="text-left">
+                  <Col md={3} sm={4} xs={12}>
+                    <SelectField
+                      name="year"
+                      label="Year"
+                      options={['2015', '2016', '2017', '2018']}
+                      formGroupClass="mb-2 mb-sm-0"
+                    />
+                  </Col>
+                  <Col md={3} sm={4} xs={12}>
+                    <SelectField
+                      name="make"
+                      label="Make"
+                      options={['Honda', 'Toyota', 'Suzuki', 'Chevrolet']}
+                      formGroupClass="mb-2 mb-sm-0"
+                    />
+                  </Col>
+                  <Col md={3} sm={4} xs={12}>
+                    <SelectField
+                      name="model"
+                      label="Model"
+                      options={['2015', '2016', '2017', '2018']}
+                      formGroupClass="mb-2 mb-sm-0"
+                    />
+                  </Col>
+                  <Col md={3} sm={12} xs={12} className="mt-4 mt-md-0">
+                    <Button block type="submit">
+                      Find Cars
+                    </Button>
+                  </Col>
+                </Row>
+              </div>
+            </Form>
+          </Formik>
         </Container>
       </section>
       <section className="car-info">

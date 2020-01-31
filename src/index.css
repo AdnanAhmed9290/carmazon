@@ -2579,7 +2579,7 @@ transform: perspective(200px) scale(1) rotateX(0deg)
 /* Sidebar */
 
 .button, .btn, .button-inverse, .button-vote, .sidebar .button, .sidebar .btn, .dropdown .dropdown-menu .button, .buttons-set .back-link a, .scrolltop, .button-tabs li a {
-	padding: 10px 20px 8px 20px;
+	padding: 5px 20px 5px 20px;
     font-size: 16px;
     text-transform: uppercase;
     font-weight: 400;
@@ -2592,7 +2592,7 @@ transform: perspective(200px) scale(1) rotateX(0deg)
     font-family: 'Saira Condensed', sans-serif;
 }
 .btn:hover, .btn:focus, .button-inverse, .button-vote:hover, .sidebar .button:hover, .sidebar .button:focus, .form-list .bootstrap-select.btn-group .btn:hover .caret, .form-list .bootstrap-select.btn-group .btn:focus .caret, .buttons-set .back-link a:hover, .buttons-set .back-link a:focus, .scrolltop, .button-tabs li a:hover, .button-tabs li a:focus {
-	padding: 10px 20px 8px 20px;
+	padding: 5px 20px 5px 20px;
 	border:none;
     border-bottom: 2px #111 solid;
 	background: #121212;

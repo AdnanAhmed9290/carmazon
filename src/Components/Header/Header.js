@@ -7,9 +7,7 @@ import {
   Nav,
   NavItem,
   NavLink,
-  Container,
-  Row,
-  Col
+  Container
 } from 'reactstrap';
 
 const Header = () => {
@@ -17,7 +15,7 @@ const Header = () => {
 
   return (
     <header className="header">
-      <Navbar color="light" light expand="md" fixed>
+      <Navbar color="light" light expand="md" fixed="top">
         <Container>
           {/* <Row>
             <Col sm={6} xs={12}> */}

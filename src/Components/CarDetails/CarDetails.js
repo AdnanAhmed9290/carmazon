@@ -17,14 +17,14 @@ import {
 const CarDetails = ({ carInfo = {} }) => {
   const [activeTab, setActiveTab] = useState('1');
 
-  const { title = '', model, imgUrl } = carInfo;
+  const { title = '', imgUrl } = carInfo;
 
   return (
-    <div className="car-details" className="text-left mt-4">
+    <div className="car-details text-left mt-4">
       <Container>
         <Row className="align-items-center">
           <Col md={2} sm={5} className="pl-3 pl-md-0 mb-3 mb-md-0">
-            <img src={imgUrl} className="img-fluid rounded" />
+            <img alt="car-avatar" src={imgUrl} className="img-fluid rounded" />
           </Col>
           <Col md={10} sm={7} className="pr-3 pr-md-0">
             <Row>
